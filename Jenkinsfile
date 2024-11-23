@@ -4,14 +4,14 @@ pipeline {
         stage('Checkout') {
             steps {
                 cleanWs()  // Clean workspace
-                git url: 'https://github.com/AbdallahHesham44/public-repo.git', branch: 'main'
+                git url: 'https://github.com/AbdallahHesham44/node-Js.git', branch: 'main'
             }
         }
-        stage('Run file') {
+        stage('build') {
             steps {
                 script {
-                    sh 'chmod +x app1.sh'
-                    sh './app1.sh'
+                    sh 'chmod +x app.js'
+                    sh 'node app1.sh'
                 }
             }
         }
