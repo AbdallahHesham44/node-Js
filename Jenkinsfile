@@ -10,7 +10,7 @@ pipeline {
         stage('build') {
             steps {
                 script {
-                    sh 'chmod +x app.js'
+                   
                     sh 'node app1.sh'
                 }
             }
