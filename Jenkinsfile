@@ -1,6 +1,7 @@
 pipeline {
     agent any
-     environment {
+
+    environment {
         // Define Docker Hub credentials
         DOCKER_HUB_CREDENTIALS = credentials('dockerhub-credentials-id')
         // Replace with your Docker Hub username
@@ -17,16 +18,18 @@ pipeline {
                 git url: 'https://github.com/AbdallahHesham44/node-Js.git', branch: 'main'
             }
         }
-        stage('build') {
+
+        stage('Build and Test Node.js Application') {
             steps {
                 script {
-                   
-                    sh 'node app.js'
+                    // Install dependencies
+                    sh 'npm install'
+                    // Test the Node.js app (optional)
+                    sh 'npm test'
                 }
             }
         }
-    }
-    stages {
+
         stage('Build Docker Image') {
             steps {
                 script {
@@ -35,7 +38,7 @@ pipeline {
                 }
             }
         }
-stages {
+
         stage('Push Docker Image to Docker Hub') {
             steps {
                 script {
@@ -48,7 +51,8 @@ stages {
             }
         }
     }
-   post {
+
+    post {
         always {
             // Clean up local Docker images after the build
             script {
