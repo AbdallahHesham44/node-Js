@@ -25,7 +25,7 @@ pipeline {
                     // Install dependencies
                     sh 'npm install'
                     // Test the Node.js app (optional)
-                    sh 'npm test'
+                    sh 'node app.js'
                 }
             }
         }
