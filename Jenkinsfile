@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Define Docker Hub credentials
-        DOCKER_HUB_CREDENTIALS = credentials('Docker_secret')
+        DOCKER_HUB_CREDENTIALS = credentials('test22')
         // Replace with your Docker Hub username
         DOCKER_HUB_USERNAME = 'abdallah1312'
         // Image name and tag to be used
