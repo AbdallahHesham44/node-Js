@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                    
-                    sh 'node app1.sh'
+                    sh 'node app.js'
                 }
             }
         }
