@@ -52,12 +52,4 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            // Clean up local Docker images after the build
-            script {
-                docker.image("${IMAGE_NAME}:${IMAGE_TAG}").remove()
-            }
-        }
-    }
 }
