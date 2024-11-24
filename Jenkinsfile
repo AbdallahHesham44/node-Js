@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Define Docker Hub credentials
-        DOCKER_HUB_CREDENTIALS = credentials('test22')
+        DOCKER_HUB_CREDENTIALS = credentials('docker_acc')
         // Replace with your Docker Hub username
         DOCKER_HUB_USERNAME = 'abdallah1312'
         // Image name and tag to be used
@@ -42,7 +42,7 @@ pipeline {
         stage('Push Docker Image to Docker Hub') {
             steps {
                 script {
-                 docker.withRegistry('https://index.docker.io/v1/', 'Docker_secret') {
+                 docker.withRegistry('https://index.docker.io/v1/', 'docker_acc') {
                         // Push the Docker image
                         docker.image("${IMAGE_NAME}:${IMAGE_TAG}").push()
               
