@@ -60,7 +60,7 @@ pipeline {
                     withCredentials([sshUserPrivateKey(credentialsId: 'ssh_cred', keyFileVariable: 'SSH_KEY')]) {
                         sh '''
                             # SSH into EC2 and run Docker container
-                            ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${EC2_SERVER} '
+                            ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${EC2_USER}@${EC2_HOST}  '
                                 # Pull the latest image
                                 docker pull abdallah1312/my-node-app:8
                                 
