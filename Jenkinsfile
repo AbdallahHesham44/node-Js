@@ -2,13 +2,14 @@ pipeline {
     agent any
 
     environment {
+        
         // Define Docker Hub credentials
-        DOCKER_HUB_CREDENTIALS = credentials('docker_acc')
+        DOCKERHUB_CREDENTIALS_USR = credentials('docker_acc')
         // Replace with your Docker Hub username
         DOCKER_HUB_USERNAME = 'abdallah1312'
         // Image name and tag to be used
         IMAGE_NAME = "${DOCKER_HUB_USERNAME}/my-node-app"
-        IMAGE_TAG = 'v1.0'
+        IMAGE_TAG = "${BUILD_NUMBER}"
     }
 
     stages {
@@ -42,7 +43,7 @@ pipeline {
         stage('Push Docker Image to Docker Hub') {
             steps {
                 script {
-                 docker.withRegistry('https://index.docker.io/v1/', 'docker_acc') {
+                        sh "echo ${DOCKERHUB_CREDENTIALS_PSW} | docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin" {
                         // Push the Docker image
                         docker.image("${IMAGE_NAME}:${IMAGE_TAG}").push()
               
