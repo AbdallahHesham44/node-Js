@@ -7,7 +7,9 @@ pipeline {
         DOCKER_HUB_USERNAME = 'abdallah1312'
         IMAGE_NAME = 'my-node-app'
         IMAGE_TAG = "${BUILD_NUMBER}"
-        
+
+        EC2_SERVER = 'ec2-user@ec2-52-73-65-200.compute-1.amazonaws.com'
+        SSH_KEY = credentials('ssh_cred')
 
     }
     
@@ -47,11 +49,35 @@ pipeline {
             steps {
                 script {
                     sh "docker push ${DOCKER_HUB_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG}"
-                    sh "docker push ${DOCKER_HUB_USERNAME}/${IMAGE_NAME}:latest"
                 }
             }
         }
-        
+       stage('Deploy to EC2') {
+            steps {
+                script {
+                    // Copy the SSH key to a temporary location
+                    withCredentials([sshUserPrivateKey(credentialsId: 'ssh_cred', keyFileVariable: 'SSH_KEY')]) {
+                        sh '''
+                            # SSH into EC2 and run Docker container
+                            ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${EC2_SERVER} '
+                                # Pull the latest image
+                                docker pull abdallah1312/my-node-app:8
+                                
+                                # Stop and remove existing container if it exists
+                                docker stop node-app-AbdallahHesham || true
+                                docker rm node-app-AbdallahHesham || true
+                                
+                                # Run the new container
+                                docker run -d \
+                                    --name node-app-AbdallahHesham \
+                                    -p 1312:3000 \
+                                    abdallah1312/my-node-app:8
+                            '
+                        '''
+                    }
+                }
+            }
+        } 
     }
     
     post {
