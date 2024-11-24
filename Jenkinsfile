@@ -8,9 +8,9 @@ pipeline {
         IMAGE_NAME = 'my-node-app'
         IMAGE_TAG = "${BUILD_NUMBER}"
 
-         EC2_HOST = '52.73.65.200'  // Just the IP address without ec2-user@
+        EC2_HOST ='52.73.65.200'  // Just the IP address without ec2-user@
         EC2_USER = 'ec2-user'
-        SSH_KEY = credentials('ssh_cred')
+        SSH_KEY  = credentials('ssh_cred')
 
     }
     
