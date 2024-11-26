@@ -1,3 +1,17 @@
+## Project Workflow
+
+Below is a visual representation of the CI/CD workflow for this project:
+
+![Project Workflow with Tools](assets/project_workflow_with_tools.gif)
+
+
+1. **Code Checkout**: Jenkins pulls the latest code from the GitHub repository's `main` branch.
+2. **Build Application**: Jenkins builds the Node.js application to ensure it functions correctly.
+3. **Build Docker Image**: Jenkins creates a Docker image of the application.
+4. **Login to Docker Hub**: Jenkins authenticates with Docker Hub using stored credentials.
+5. **Push Docker Image**: Jenkins pushes the Docker image to Docker Hub, tagging it with the build number.
+6. **Deploy to EC2**: Jenkins connects to an AWS EC2 instance via SSH, pulls the latest Docker image, and deploys it.
+7. 
 # Node.js Application with Jenkins CI/CD Pipeline
 
 This project is a simple Node.js application deployed using Jenkins as a CI/CD pipeline. The pipeline automates the build, test, Docker image creation, and deployment of the application to an EC2 instance using Docker.
@@ -57,15 +71,3 @@ This project demonstrates a complete CI/CD workflow using Jenkins to deploy a No
    ```bash
    git clone https://github.com/AbdallahHesham44/node-Js.git
    cd node-Js
-## Project Workflow
-
-Below is a visual representation of the CI/CD workflow for this project:
-
-![Project Workflow](assets/workflow.png)
-
-1. **Code Checkout**: Jenkins pulls the latest code from the GitHub repository's `main` branch.
-2. **Build Application**: Jenkins builds the Node.js application to ensure it functions correctly.
-3. **Build Docker Image**: Jenkins creates a Docker image of the application.
-4. **Login to Docker Hub**: Jenkins authenticates with Docker Hub using stored credentials.
-5. **Push Docker Image**: Jenkins pushes the Docker image to Docker Hub, tagging it with the build number.
-6. **Deploy to EC2**: Jenkins connects to an AWS EC2 instance via SSH, pulls the latest Docker image, and deploys it.
