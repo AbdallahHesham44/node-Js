@@ -2,7 +2,7 @@
 
 Below is a visual representation of the CI/CD workflow for this project:
 
-![Project Workflow with Tools](assets/project_workflow_with_tools.gif)
+![Project Workflow with Tools](assets/Commit Code.png)
 
 
 1. **Code Checkout**: Jenkins pulls the latest code from the GitHub repository's `main` branch.
