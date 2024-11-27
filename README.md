@@ -12,7 +12,7 @@ Below is a visual representation of the CI/CD workflow for this project:
 4. **Login to Docker Hub**: Jenkins authenticates with Docker Hub using stored credentials.
 5. **Push Docker Image**: Jenkins pushes the Docker image to Docker Hub, tagging it with the build number.
 6. **Deploy to EC2**: Jenkins connects to an AWS EC2 instance via SSH, pulls the latest Docker image, and deploys it.
-7. 
+ 
 # Node.js Application with Jenkins CI/CD Pipeline
 
 This project is a simple Node.js application deployed using Jenkins as a CI/CD pipeline. The pipeline automates the build, test, Docker image creation, and deployment of the application to an EC2 instance using Docker.
