@@ -5,6 +5,7 @@ Below is a visual representation of the CI/CD workflow for this project:
 ![Project Workflow with Tools](assets/Commit_Code.png)
 
 
+
 1. **Code Checkout**: Jenkins pulls the latest code from the GitHub repository's `main` branch.
 2. **Build Application**: Jenkins builds the Node.js application to ensure it functions correctly.
 3. **Build Docker Image**: Jenkins creates a Docker image of the application.
